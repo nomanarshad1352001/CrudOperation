@@ -51,7 +51,7 @@ export default function IndividualStateForm() {
     setarr(newarr);
   };
   const editRow = (id) => {
-    console.log("edit has been clickes");
+    console.log("edit has been clicked");
     const newarr = arr.filter((x) => x.id === id);
     console.log(newarr);
     setname(newarr[0].name);

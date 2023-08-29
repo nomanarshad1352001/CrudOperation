@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Output from "./Output";
-export default function Newform() {
+export default function NewForm() {
   const [user, setuser] = useState([]);
   const [EditingState, setEditingState] = useState(false);
   const [UserInput, setUserInput] = useState({

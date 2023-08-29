@@ -1,0 +1,18 @@
+.App {
+    text-align: center;
+
+}
+
+.form {
+    margin-top: 30px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 100px rgba(203, 203, 203, 0.25);
+}
+
+.mainCenter {
+    max-width: 1050px;
+}
