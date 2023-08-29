@@ -1,43 +1,40 @@
 import React from "react";
-import Card from "./Card/Card";
+import Card from "../Ui Elements/Card";
 
 export default function Output(props) {
-    let expenseContent;
+    let tabelData;
     if (props.user.length > 0) {
-        expenseContent = props.user.map((data, index) => (
-            <tbody key={data.id}>
-            <tr>
-                <th scope="row">{index + 1}</th>
-                <td>{data.Name}</td>
-                <td>{data.Email}</td>
-                <td>{data.Address}</td>
-                <td>{data.City}</td>
-                <td>{data.NIC}</td>
-                <td>{data.Gender}</td>
-                <td>
-                    <button
-                        onClick={() => {
-                            props.deleteRow(data.id);
-                        }}
-                        className="btn btn-danger mx-1 rounded-5"
-                    >
-                        Delete
+        tabelData = props.user.map((data, index) => (
+
+            <tr key={data.id}>
+                <th className={'align-center'} scope="row">{index + 1}</th>
+                <td className={'align-center d-flex flex-column align-items-center'}>
+                    <span className={'table-image'}>
+                        <img src={`http://localhost:5000/${data.image}`} alt='user'/>
+                    </span>
+                    <span>{data.name}</span>
+                </td>
+                <td className={'align-center'}>{data.email}</td>
+                <td className={'align-center'}>{data.address}</td>
+                <td className={'align-center'}>{data.city}</td>
+                <td className={'align-center'}>{data.nic}</td>
+                <td className={'align-center'}>{data.gender}</td>
+                <td className={'align-center'}>
+                    <button onClick={() => {
+                        props.deleteRow(data.id)
+                    }} className="btn btn-danger mx-1 rounded-5">Delete
                     </button>
-                    <button
-                        onClick={() => {
-                            props.editRow(data.id);
-                        }}
-                        className="btn btn-primary mx-1 rounded-5"
-                    >
-                        Edit
+                    <button onClick={() => {
+                        props.editRow(data.id)
+                    }} className="btn btn-primary mx-1 rounded-5">Edit
                     </button>
                 </td>
             </tr>
-            </tbody>
+
         ))
     }
     return (
-        <Card className={'text-center m-3'}>
+        <Card className={'text-center m-3 table-responsive'}>
             <table className="table">
                 <thead>
                 <tr>
@@ -48,10 +45,12 @@ export default function Output(props) {
                     <th scope="col">City</th>
                     <th scope="col">Nic</th>
                     <th scope="col">Gender</th>
-                    <th scope="col">operation</th>
+                    <th scope="col">Action</th>
                 </tr>
                 </thead>
-                {expenseContent}
+                <tbody>
+                {tabelData}
+                </tbody>
             </table>
         </Card>
 

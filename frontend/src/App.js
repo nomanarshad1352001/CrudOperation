@@ -1,9 +1,8 @@
 import "./App.css";
-import Card from "./components/Card/Card.js";
-import IndividualStateForm from "./components/IndividualStateForm";
-import LocalStorageForm from "./components/LocalStorageForm";
-import Navbar from "./components/Navbar";
-import NewForm from "./components/NewForm";
+// import IndividualStateForm from "./components/IndividualStateForm";
+// import LocalStorageForm from "./components/LocalStorageForm";
+// import NewForm from "./components/NewForm";
+import Navbar from "./Ui Elements/Navbar";
 import FormWithDb from "./components/FormWithDB";
 
 function App() {
