@@ -1,8 +1,8 @@
 const express = require('express');
-
 const {check} = require('express-validator');
 const userController = require('../controller/user-controller')
 const fileUpload = require('../middleWare/file-uploads')
+const xlFileUpload = require('../middleWare/xlFile-uploads')
 
 const router = express.Router();
 
@@ -27,6 +27,7 @@ router.patch('/:uid', fileUpload.single('image'), [
 ], userController.updateUser);
 
 router.delete('/:uid', userController.deleteUserById);
+router.post('/readXlFile', xlFileUpload.single('file'), userController.readXlFile);
 
 module.exports = router;
 

@@ -3,7 +3,7 @@ const {validationResult} = require('express-validator');
 const HttpError = require('../models/http-error');
 const User = require('../models/user-model');
 const fs = require("fs");
-
+const excelToJson = require('convert-excel-to-json');
 const getAllUsers = async (req, res, next) => {
     let users;
 
@@ -132,7 +132,33 @@ const deleteUserById = async (req, res, next) => {
     res.json({users: users.map(user => user.toObject({getters: true}))});
 };
 
+const readXlFile = async (req, res, next) => {
+    try {
+        if (req.file?.filename === null || req.file?.filename === undefined) {
+            return next(new HttpError('Something went wrong. No file attached', 400))
+        } else {
+            const filePath = "uploads/xlFiles/" + req.file.filename
+            const excelData = excelToJson({
+                sourceFile: filePath,
+                header: {
+                    rows: 1,
+                },
+                columnToKey: {
+                    "*": "{{columnHeader}}"
+                }
+            })
+            fs.unlink(filePath, err => {
+            });
+            res.json(excelData).status(200)
+        }
+    } catch (err) {
+        console.log(err)
+        return next(new HttpError('Something went wrong. please try again later', 500))
+    }
+}
+
 exports.getAllUser = getAllUsers;
 exports.addUser = addUser;
 exports.updateUser = updateUser;
 exports.deleteUserById = deleteUserById;
+exports.readXlFile = readXlFile;
